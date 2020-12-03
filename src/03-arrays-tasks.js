@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+/* eslint-disable no-return-assign */
 /* ********************************************************************************************
  *                                                                                            *
  * Plese read the following tutorial before implementing tasks:                               *
@@ -36,12 +37,15 @@ function findElement(arr, value) {
  *    2 => [ 1, 3 ]
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds() {
-  const arr = new Array(8);
-  return arr.map((item, index) => {
-    item = index + 1;
+function generateOdds(len) {
+  let counter = 1;
+  const arr = new Array(len).fill(1);
+  const newArr = arr.map((item) => {
+    item = counter;
+    counter += 2;
     return item;
-  }).filter((item) => !(item % 2));
+  });
+  return newArr;
 }
 
 
