@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* ********************************************************************************************
  *                                                                                            *
  * Plese read the following tutorial before implementing tasks:                               *
@@ -35,9 +36,12 @@ function findElement(arr, value) {
  *    2 => [ 1, 3 ]
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(len) {
-  const arr = new Array(len);
-  return arr.filter((item) => !(item % 2));
+function generateOdds() {
+  const arr = new Array(8);
+  return arr.map((item, index) => {
+    item = index + 1;
+    return item;
+  }).filter((item) => !(item % 2));
 }
 
 
