@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-return-assign */
 /* ********************************************************************************************
  *                                                                                            *
  * Plese read the following tutorial before implementing tasks:                               *
@@ -38,14 +36,9 @@ function findElement(arr, value) {
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
 function generateOdds(len) {
-  let counter = 1;
-  const arr = new Array(len).fill(1);
-  const newArr = arr.map((item) => {
-    item = counter;
-    counter += 2;
-    return item;
-  });
-  return newArr;
+  const arr = new Array(len * 2).fill(1);
+  const fullArr = arr.map((item, index) => index + 1).filter((item) => item % 2);
+  return fullArr;
 }
 
 
@@ -330,8 +323,25 @@ function getPositivesCount(arr) {
  *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  if (arr.length === 0) return [];
+  const obj = {
+    zero: 0,
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9,
+  };
+
+  const convertedArr = arr.map((item) => obj[item]);
+  const sortedArr = convertedArr.sort((a, b) => a - b);
+  const sortedConverted = sortedArr.map((i) => Object.keys(obj).find((key) => obj[key] === i));
+  return sortedConverted;
 }
 
 /**
@@ -363,9 +373,10 @@ function getItemsSum(arr) {
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
 function getFalsyValuesCount(arr) {
+  let counter = 0;
   return arr.reduce((accumulator, currentValue) => {
-    if (!currentValue) accumulator += 1;
-    return accumulator;
+    if (!currentValue) counter += 1;
+    return counter;
   }, 0);
 }
 
@@ -384,9 +395,10 @@ function getFalsyValuesCount(arr) {
  *    [ true, 0, 1, 'true' ], true => 1
  */
 function findAllOccurences(arr, item) {
+  let counter = 0;
   return arr.reduce((accum, currVal) => {
-    if (currVal === item) accum += 1;
-    return accum;
+    if (currVal === item) counter += 1;
+    return counter;
   }, 0);
 }
 
@@ -401,8 +413,8 @@ function findAllOccurences(arr, item) {
  *    [1, 2, 3, 4, 5]                   => '1,2,3,4,5'
  *    ['rock', 'paper', 'scissors']     => 'rock,paper,scissors'
  */
-function toStringList(/* arr */) {
-  throw new Error('Not implemented');
+function toStringList(arr) {
+  return arr.join();
 }
 
 
@@ -432,8 +444,12 @@ function toStringList(/* arr */) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
-function sortCitiesArray(/* arr */) {
-  throw new Error('Not implemented');
+function sortCitiesArray(arr) {
+  return arr.sort((a, b) => {
+    if (a.country > b.country) return 1;
+    if (a.country < b.country) return -1;
+    return a.city > b.city ? 1 : -1;
+  });
 }
 
 /**
@@ -486,8 +502,8 @@ function getIntervalArray(/* start, end */) {
  *   [ 'a', 'a', 'a', 'a' ]  => [ 'a' ]
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+function distinct(arr) {
+  return Array.from(new Set(arr));
 }
 
 /**
